@@ -3,8 +3,8 @@ import 'package:watchlux/core/constant.dart';
 
 class MyButton extends StatelessWidget {
   final Function()? onTap;
-
-  const MyButton({super.key, required this.onTap});
+  String text;
+  MyButton({super.key, required this.onTap, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +17,10 @@ class MyButton extends StatelessWidget {
           color: themeColor,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: const Center(
+        child: Center(
           child: Text(
-            "Sign In",
-            style: TextStyle(
+            text,
+            style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
               fontSize: 16,
