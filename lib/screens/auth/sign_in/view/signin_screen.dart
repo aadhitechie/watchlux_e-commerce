@@ -23,7 +23,6 @@ class SigninScreen extends StatelessWidget {
   final formkey = GlobalKey<FormState>();
 
   // sign user in method
-  void signUserIn() {}
 
   @override
   Widget build(BuildContext context) {
