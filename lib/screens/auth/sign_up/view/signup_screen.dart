@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:watchlux/core/constant.dart';
-import 'package:watchlux/screens/auth/sign_in/view/signin_screen.dart';
+import 'package:watchlux/screens/auth/login/view/signin_screen.dart';
 import 'package:watchlux/screens/auth/sign_up/controller/signup_controller.dart';
 import '../../../../widgets/my_button.dart';
 import '../../../../widgets/my_textfield.dart';
@@ -75,7 +75,7 @@ class SignupScreen extends StatelessWidget {
                     MyTextField(
                       validator: (value) =>
                           signupController.usernameValidation(value),
-                      controller: signupController.usernameController,
+                      controller: signupController.fullNameController,
                       hintText: 'Username',
                       obscureText: false,
                     ),
@@ -84,8 +84,8 @@ class SignupScreen extends StatelessWidget {
                     MyTextField(
                       keyboardtype: TextInputType.number,
                       validator: (value) =>
-                          signupController.phoneValdation(value),
-                      controller: signupController.phoneController,
+                          signupController.mobileValdation(value),
+                      controller: signupController.mobileController,
                       hintText: 'Phone number',
                       obscureText: false,
                     ),
@@ -106,7 +106,7 @@ class SignupScreen extends StatelessWidget {
                       obscureText: signupController.obscureText,
                       validator: (value) =>
                           signupController.passwordValdation(value),
-                      controller: signupController.passwordController,
+                      controller: signupController.passController,
                       hintText: 'Password',
                       suffixicon: IconButton(
                         onPressed: () {
@@ -122,7 +122,7 @@ class SignupScreen extends StatelessWidget {
                       obscureText: signupController.obscureText,
                       validator: (value) =>
                           signupController.confirmpasswordValdation(value),
-                      controller: signupController.confirmpasswordController,
+                      controller: signupController.confirmPassController,
                       hintText: 'Confirm Password',
                       suffixicon: IconButton(
                         onPressed: () {
@@ -139,6 +139,7 @@ class SignupScreen extends StatelessWidget {
                       onTap: () {
                         if (formkey.currentState!.validate()) {
                           log('Hello');
+                          signupController.signupUser(context);
                         }
                       },
                     ),

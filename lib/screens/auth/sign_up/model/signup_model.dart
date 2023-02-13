@@ -1,11 +1,11 @@
 class SignUpModel {
-  final String fullname;
+  final String fullName;
   final String email;
   final String phone;
   final String password;
 
   SignUpModel({
-    required this.fullname,
+    required this.fullName,
     required this.email,
     required this.phone,
     required this.password,
@@ -13,17 +13,18 @@ class SignUpModel {
 
   factory SignUpModel.fromJson(Map<String, dynamic> json) {
     return SignUpModel(
-        fullname: json["fullname"] ?? '',
+        fullName: json["fullname"] ?? '',
         email: json["email"] ?? '',
         phone: json["phone"] ?? '',
         password: json["password"] ?? '');
   }
+
   Map<String, dynamic> toJson() {
     return {
-      "fullname": fullname,
+      "fullname": fullName,
       "email": email,
       "phone": phone,
-      "password": password
+      "password": password,
     };
   }
 }

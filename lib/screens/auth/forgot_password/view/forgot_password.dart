@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:watchlux/core/constant.dart';
 import 'package:watchlux/screens/auth/forgot_password/controller/forgot_pasword_controller.dart';
-import 'package:watchlux/screens/auth/verification_pass/verification_pass_screen.dart';
+import 'package:watchlux/screens/auth/forgot_password/view/forgot_otp.dart';
 import 'package:watchlux/widgets/my_button.dart';
 import 'package:watchlux/widgets/my_textfield.dart';
 
@@ -87,7 +87,7 @@ class ForgotPassword extends StatelessWidget {
                   if (formkey.currentState!.validate()) {
                     log('mail');
                   }
-                  Get.to(() => VerificationPassScreen());
+                  Get.to(() => ForgotOtpScreen());
                 },
                 text: 'Submit',
               )

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:watchlux/core/constant.dart';
 import 'package:watchlux/screens/auth/forgot_password/view/forgot_password.dart';
-import 'package:watchlux/screens/auth/sign_in/controller/signin_controller.dart';
+import 'package:watchlux/screens/auth/login/controller/login_controller.dart';
 import 'package:watchlux/screens/auth/sign_up/view/signup_screen.dart';
 import 'package:watchlux/widgets/square_tile.dart';
 
@@ -18,7 +18,7 @@ class SigninScreen extends StatelessWidget {
   SigninScreen({super.key});
 
   // text editing controllers
-  final signinController = Get.put(SignInController());
+  final signinController = Get.put(LoginController());
 
   final formkey = GlobalKey<FormState>();
 
@@ -28,7 +28,7 @@ class SigninScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundclr,
-      body: GetBuilder<SignInController>(
+      body: GetBuilder<LoginController>(
         builder: (controller) => SingleChildScrollView(
           child: SafeArea(
             child: Center(
@@ -101,7 +101,7 @@ class SigninScreen extends StatelessWidget {
                       ),
                       validator: (value) =>
                           signinController.passwordValdation(value),
-                      controller: signinController.passwordController,
+                      controller: signinController.passController,
                       hintText: 'Password',
                       obscureText: signinController.obscureText,
                     ),
@@ -130,7 +130,7 @@ class SigninScreen extends StatelessWidget {
                       text: 'Sign In',
                       onTap: () {
                         if (formkey.currentState!.validate()) {
-                          log('Hello');
+                          signinController.logIn(context);
                         }
                       },
                     ),

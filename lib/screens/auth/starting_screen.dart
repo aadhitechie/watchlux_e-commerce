@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:watchlux/screens/auth/sign_in/view/signin_screen.dart';
+import 'package:watchlux/screens/auth/login/view/signin_screen.dart';
 
 import '../../core/constant.dart';
 

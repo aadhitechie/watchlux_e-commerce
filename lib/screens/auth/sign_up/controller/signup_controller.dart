@@ -1,16 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:watchlux/core/constant.dart';
+import 'package:watchlux/screens/auth/otp_verification/view/signup_otp.dart';
+
+import '../../../../core/constant.dart';
+import '../../otp_verification/service/otp_service/send_otp_service.dart';
+import '../model/signup_model.dart';
+import '../services/signup_service.dart';
 
 class SignUpController extends GetxController {
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
-  final emailController = TextEditingController();
-  final confirmpasswordController = TextEditingController();
-  final phoneController = TextEditingController();
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController mobileController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+  TextEditingController confirmPassController = TextEditingController();
+
+  SignupServices signupServices = SignupServices();
+  FlutterSecureStorage storage = const FlutterSecureStorage();
+  bool isLoading = false;
+  Future<void> signupUser(BuildContext context) async {
+    isLoading = true;
+    update();
+    final model = SignUpModel(
+      email: emailController.text,
+      password: passController.text,
+      phone: mobileController.text,
+      fullName: fullNameController.text,
+    );
+
+    SendOtpServices().sendOtp(model.email, context).then((value) async {
+      if (value != null) {
+        Get.to(() => OtpVerifyScreen(model: model));
+        await storage.write(
+            key: 'email', value: emailController.text.toString());
+
+        disposeTextfield();
+      } else {
+        return;
+      }
+    });
+    isLoading = false;
+    update();
+  }
+
+  void disposeTextfield() {
+    fullNameController.clear();
+    emailController.clear();
+    passController.clear();
+    mobileController.clear();
+    confirmPassController.clear();
+  }
+
   String? nameValidation(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter the username';
+      return 'Please enter the fullname';
     } else {
       return null;
     }
@@ -38,7 +81,7 @@ class SignUpController extends GetxController {
     }
   }
 
-  String? phoneValdation(String? value) {
+  String? mobileValdation(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter your mobile number';
     } else if (value.length < 10) {
@@ -50,7 +93,7 @@ class SignUpController extends GetxController {
 
   String? passwordValdation(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your password';
+      return 'Please Password';
     } else if (value.length < 8) {
       return 'Password must have atleast 8 character';
     } else if (value.length > 8) {
@@ -64,7 +107,7 @@ class SignUpController extends GetxController {
       return 'Please confirm your password';
     } else if (value.length < 8) {
       return 'Password must have atleast 8 character';
-    } else if (value != passwordController.text) {
+    } else if (value != passController.text) {
       return 'Password does not match';
     } else {
       return null;

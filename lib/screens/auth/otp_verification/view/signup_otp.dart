@@ -1,16 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:watchlux/core/constant.dart';
 import 'package:watchlux/screens/auth/forgot_password/view/forgot_password.dart';
-import 'package:watchlux/screens/auth/new_password/view/new_password.dart';
+import 'package:watchlux/screens/auth/sign_up/model/signup_model.dart';
 import 'package:watchlux/widgets/my_button.dart';
 
-class VerificationPassScreen extends StatelessWidget {
-  const VerificationPassScreen({super.key});
+import '../controller/otp_verify_controller.dart';
+
+class OtpVerifyScreen extends StatelessWidget {
+  OtpVerifyScreen({super.key, required this.model});
+  final SignUpModel model;
+  final verifyotpC = Get.put(OtpVerifyController());
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +72,8 @@ class VerificationPassScreen extends StatelessWidget {
               fillColor: kBlackcolor.withOpacity(0.2),
               filled: true,
               keyboardType: TextInputType.number,
-              onSubmit: (value) {
-                print('the otp is $value');
+              onSubmit: (String verificationCode) {
+                verifyotpC.onSubmitCode(verificationCode);
               },
             ),
           ),
@@ -77,7 +81,11 @@ class VerificationPassScreen extends StatelessWidget {
           SizedBox(
               child: MyButton(
                   onTap: () {
-                    Get.to(() => NewPasswordScreen());
+                    verifyotpC.submitOtp(
+                      model,
+                      verifyotpC.code,
+                    );
+                    //  Get.to(() => );
                   },
                   text: 'Continue')),
           const SizedBox(height: 20),
