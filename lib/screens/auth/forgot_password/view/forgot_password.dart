@@ -23,7 +23,7 @@ class ForgotPassword extends StatelessWidget {
           key: formkey,
           child: Column(
             children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 100),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

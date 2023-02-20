@@ -2,34 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 import 'package:watchlux/core/constant.dart';
+import 'package:watchlux/screens/home/controller/home_controller.dart';
 
 class CarouselScreen extends StatelessWidget {
-  const CarouselScreen({super.key});
-
+  CarouselScreen(
+      {super.key, required this.homeController, required this.width, required this.height});
+  final HomeController homeController;
+  final double width;
+  final double height;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(color: kBackgroundclr),
-      child: CarouselSlider(
-        items: [
-          Image.network(
-            'https://m.media-amazon.com/images/G/31/img22/Wearables/Ptron_X12S/1400x800_Shop-Now._CB616080147_.jpg',
-            fit: BoxFit.cover,
-          ),
-          Image.network(
-            'https://m.media-amazon.com/images/G/31/img22/Wearables/Dizo_D2/1400x800_r1._CB615267599_.jpg',
-            fit: BoxFit.cover,
-          ),
-          Image.network(
-            'https://m.media-amazon.com/images/G/31/img22/Wearables/Boat-wave-call/1400_x_800._CB614620612_.jpg',
-            fit: BoxFit.cover,
-          ),
-          Image.network(
-            'https://m.media-amazon.com/images/G/31/img22/Wearables/Noise_GPS/1400x800-2._CB616080979_.gif',
-            fit: BoxFit.cover,
-          )
-        ],
+      decoration: BoxDecoration(color: kTransparent),
+      child: CarouselSlider.builder(
+        itemBuilder: (BuildContext context, int index, int realIndex) {
+          return Container(
+            width: width,
+                      height: height * 0.28,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: kWhitecolor,
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              ''),
+                          // fit: BoxFit.cover,
+                        ),
+                      ),);
+        },
+        itemCount: homeController.carousalList.length,
         options: CarouselOptions(
           height: Get.height * 0.30,
           aspectRatio: 16 / 9,

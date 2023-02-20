@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:watchlux/screens/auth/login/view/signin_screen.dart';
@@ -70,7 +68,7 @@ class StartingScreen extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                               horizontal: 100, vertical: 20),
                           child: Text(
-                            'Get started for free ',
+                            'Get start for free',
                             style: textStyle,
                           ),
                         ),

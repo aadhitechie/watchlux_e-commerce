@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:watchlux/screens/auth/otp_verification/view/signup_otp.dart';
-
 import '../../../../core/constant.dart';
 import '../../otp_verification/service/otp_service/send_otp_service.dart';
 import '../model/signup_model.dart';

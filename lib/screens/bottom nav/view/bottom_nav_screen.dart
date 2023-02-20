@@ -4,21 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:watchlux/core/constant.dart';
 import 'package:watchlux/screens/bottom%20nav/controller/bottom_nav_controller.dart';
-import 'package:watchlux/screens/cart/view/cart_screen.dart';
-import 'package:watchlux/screens/home/view/home_screen.dart';
-import 'package:watchlux/screens/profile/view/profile_screen.dart';
-import 'package:watchlux/screens/wishlist/view/wishilist_screen.dart';
 
 class BottomNavScreen extends StatelessWidget {
   BottomNavScreen({super.key});
-  final bottomnavcontroller = Get.put(BottomNavContoller());
-  final currentIndex = 0;
-  List pages = [
-    HomeScreen(),
-    CartScreen(),
-    WishlistScreen(),
-    ProfileScreen(),
-  ];
+  BottomNavContoller bottomnavcontroller = Get.put(BottomNavContoller());
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +31,8 @@ class BottomNavScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: pages[bottomnavcontroller.currentIndex],
+      body:GetBuilder<BottomNavContoller>(builder: (controller){
+        return bottomnavcontroller.pages[bottomnavcontroller.currentIndex];}) ,
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         child: GNav(
@@ -50,7 +41,7 @@ class BottomNavScreen extends StatelessWidget {
           hoverColor: kGreyColor,
           tabBackgroundColor: Colors.grey.shade300,
           padding: const EdgeInsets.all(16),
-          onTabChange: bottomnavcontroller.onTabChanged,
+          onTabChange: (value) => bottomnavcontroller.bottomNav(value),
           tabs: const [
             GButton(
               gap: 8,

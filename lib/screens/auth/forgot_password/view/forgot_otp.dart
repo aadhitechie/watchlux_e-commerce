@@ -15,7 +15,7 @@ class ForgotOtpScreen extends StatelessWidget {
       backgroundColor: kBackgroundclr,
       body: Column(
         children: [
-          const SizedBox(height: 50),
+          const SizedBox(height: 100),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

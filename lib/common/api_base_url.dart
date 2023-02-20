@@ -1,4 +1,4 @@
 class ApiBaseUrl {
-  String baseUrl = 'http://$ip:5000/';
-  static const ip = '10.4.6.238';
+  String baseUrl = 'http://$ip:4000/';
+  static const ip = '10.4.2.175';
 }
