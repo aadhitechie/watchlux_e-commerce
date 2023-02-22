@@ -7,33 +7,38 @@ import 'package:watchlux/widgets/home_product_grid.dart';
 import '../../../widgets/home_carousel_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-   HomeScreen({super.key});
+  HomeScreen({super.key});
   double width = Get.width;
   double height = Get.height;
   final homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<HomeController>(
-        builder:(controller) => 
-         ListView(
+      body: GetBuilder(
+        init: homeController,
+        builder: (controller) => ListView(
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   CarouselScreen(homeController: homeController,height: height,width: width,),
+                  CarouselScreen(
+                    homeController: homeController,
+                    height: height,
+                    width: width,
+                  ),
                   const Divider(),
                   Text(
                     'The brands',
                     style: GoogleFonts.oswald(
                         fontSize: 24, fontWeight: FontWeight.w500),
                   ),
-                  CategoryScreen(height: 600),
+                  CategoryScreen(height: height, homeController: homeController,),
                   Divider(),
                   Text(
-                    'Products',
+                    'Premium Products',
                     style: GoogleFonts.oswald(
                         fontSize: 24, fontWeight: FontWeight.w500),
                   ),

@@ -10,9 +10,9 @@ class CarousalModel {
   });
   factory CarousalModel.fromJson(Map<String, dynamic> json) {
     return CarousalModel(
-      id: json['_id'],
-      image: json['image'],
-      offer: json['offer'],
+      id: json['_id']?? '',
+      image: json['image']??'',
+      offer: json['offer']??'',
     );
   }
 }
