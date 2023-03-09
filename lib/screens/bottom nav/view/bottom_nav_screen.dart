@@ -4,11 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:watchlux/core/constant.dart';
 import 'package:watchlux/screens/bottom%20nav/controller/bottom_nav_controller.dart';
+import 'package:watchlux/screens/cart/view/cart_screen.dart';
 
+// ignore: must_be_immutable
 class BottomNavScreen extends StatelessWidget {
   BottomNavScreen({super.key});
   BottomNavContoller bottomnavcontroller = Get.put(BottomNavContoller());
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,25 +20,26 @@ class BottomNavScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Watchlux',
+              'watchlux',
               style: GoogleFonts.oswald(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: kBlackcolor),
             ),
-            const Icon(
-              Icons.watch,
-              color: kBlackcolor,
-            )
           ],
         ),
-      ),
-      body:GetBuilder<BottomNavContoller>(builder: (controller){
-        return bottomnavcontroller.pages[bottomnavcontroller.currentIndex];}) ,
+     actions: [Padding(
+       padding: const EdgeInsets.all(8.0),
+       child: InkWell(onTap: (){Get.to(()=>CartScreen());},
+        child: Icon(Icons.shopping_cart_outlined,color: kBlackcolor,)),
+     )], ),
+      body: GetBuilder<BottomNavContoller>(builder: (controller) {
+        return bottomnavcontroller.pages[bottomnavcontroller.currentIndex];
+      }),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         child: GNav(
-          backgroundColor: Colors.transparent,
+          backgroundColor: kTransparent,
           color: themeColor,
           hoverColor: kGreyColor,
           tabBackgroundColor: Colors.grey.shade300,
@@ -50,8 +53,8 @@ class BottomNavScreen extends StatelessWidget {
             ),
             GButton(
               gap: 8,
-              icon: Icons.shopping_cart_outlined,
-              text: 'Cart',
+              icon: Icons.category_outlined,
+              text: 'Category',
             ),
             GButton(
               gap: 8,

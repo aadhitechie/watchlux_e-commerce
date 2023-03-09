@@ -6,6 +6,7 @@ class CategoryContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ignore: prefer_const_literals_to_create_immutables
       body: ListView(children: [
         CircleAvatar(
           backgroundImage: NetworkImage(

@@ -28,7 +28,7 @@ class ForgotPassword extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Watchlux',
+                    'watchlux',
                     style: GoogleFonts.oswald(
                         fontSize: 30, fontWeight: FontWeight.bold),
                   ),
@@ -87,7 +87,7 @@ class ForgotPassword extends StatelessWidget {
                   if (formkey.currentState!.validate()) {
                     log('mail');
                   }
-                  Get.to(() => ForgotOtpScreen());
+                  Get.to(() => const ForgotOtpScreen());
                 },
                 text: 'Submit',
               )

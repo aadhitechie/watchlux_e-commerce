@@ -16,8 +16,8 @@ class HomeController extends GetxController {
   }
   bool isLoading = false;
   List<CarousalModel> carousalList = [];
-  List<CategoryModel>categoryList = [];
-  List<ProductModel>productList=[];
+  List<CategoryModel> categoryList = [];
+  List<ProductModel> productList = [];
   CarousalService carouselS = CarousalService();
   CategoryService categoryS = CategoryService();
   void getCarousal() async {
@@ -34,6 +34,7 @@ class HomeController extends GetxController {
       }
     });
   }
+
   void getCategory() async {
     log('getcategory');
     isLoading = true;
@@ -55,22 +56,26 @@ class HomeController extends GetxController {
       }
     });
   }
- void  getProduct()async{
-  log('product start');
-  isLoading=true;
-  update();
-  await ProductService().getProduct().then((value) {
-    if (value!=null) {
-      log('product added');
-      productList=value;
-      update();
-      isLoading=false;
-      update();
-    }
-    else{
-      isLoading=false;
-      update();
-    }
-  });
- }
+
+  void getProduct() async {
+    log('product start');
+    isLoading = true;
+    update();
+    await ProductService().getProduct().then((value) {
+      if (value != null) {
+        log('product added');
+        productList = value;
+        update();
+        isLoading = false;
+        update();
+      } else {
+        isLoading = false;
+        update();
+      }
+    });
+  }
+
+  ProductModel findById(String id) {
+    return productList.firstWhere((element) => element.id == id);
+  }
 }

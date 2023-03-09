@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:watchlux/core/constant.dart';
-import 'package:watchlux/screens/home/view/home_screen.dart';
+import 'package:watchlux/screens/home/controller/home_controller.dart';
+import 'package:watchlux/widgets/product_description.dart';
+import 'package:watchlux/widgets/product_view_carousel.dart';
 
 class ProductViewScreen extends StatelessWidget {
-  const ProductViewScreen({
+  ProductViewScreen({
     super.key,
-    //
-    //required this.hieght,
-    //required this.weight
+    required this.id,
   });
-  // final double hieght;
-  // final double weight;
+  final String id;
+  final homecontroller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
+    final findProductById = homecontroller.findById(id);
     return Scaffold(
       backgroundColor: kBackgroundclr,
       appBar: AppBar(
         title: Text(
-          'Product name',
-          style: TextStyle(color: kBlackcolor),
-          textAlign: TextAlign.start,
+          'watchlux',
+          style: GoogleFonts.oswald(
+              fontSize: 25, fontWeight: FontWeight.bold, color: kBlackcolor),
         ),
         backgroundColor: kBackgroundclr,
         leading: Padding(
@@ -43,29 +44,50 @@ class ProductViewScreen extends StatelessWidget {
           ),
         ),
         elevation: 0,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 18.0),
-            child: RatingBar.builder(
-              itemSize: 20,
-              initialRating: 3,
-              minRating: 1,
-              direction: Axis.horizontal,
-              allowHalfRating: true,
-              itemCount: 5,
-              itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
-              itemBuilder: (context, _) => Icon(
-                Icons.star,
-                color: Colors.amber,
-              ),
-              onRatingUpdate: (rating) {
-                print(rating);
-              },
-            ),
-          )
-        ],
       ),
-      body: SafeArea(child: Text('Product view')),
+      body: GetBuilder<HomeController>(builder: (controller) {
+        return SingleChildScrollView(
+          child: SafeArea(
+              child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: ProductViewCarousel(
+                  height: 600,
+                  width: double.infinity,
+                  prodmodel: findProductById,
+                ),
+              ),
+              kHeight5,
+              Padding(
+                padding: EdgeInsets.all(3.0),
+                child: ProductDescription(controlle: findProductById),
+              ),
+              const SizedBox(
+                height: 280,
+              ),
+             
+            ],
+          )),
+        );
+      }),
+      bottomNavigationBar:  BottomNavigationBar(
+                  backgroundColor: kTransparent,
+                  elevation: 0,
+                  selectedItemColor: kBlackcolor,
+                  unselectedItemColor: kBlackcolor,
+                  selectedFontSize: 13,
+                  unselectedFontSize: 13,
+                  items: const [
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.shopping_cart_outlined),
+                      label: 'Add to cart',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.favorite_outline),
+                      label: 'Add to wishlist',
+                    ),
+                  ]),
     );
   }
 }

@@ -33,7 +33,7 @@ class SignupScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Watchlux',
+                          'watchlux',
                           style: GoogleFonts.oswald(
                               fontSize: 30, fontWeight: FontWeight.bold),
                         ),

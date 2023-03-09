@@ -22,7 +22,7 @@ class CarouselScreen extends StatelessWidget {
         ? const CarouselShimmer()
         : Container(
             width: double.infinity,
-            decoration: BoxDecoration(color: kTransparent),
+            decoration:const BoxDecoration(color: kTransparent),
             child: CarouselSlider.builder(
               itemBuilder: (BuildContext context, int index, int realIndex) {
                 return Container(
@@ -48,8 +48,8 @@ class CarouselScreen extends StatelessWidget {
                 enableInfiniteScroll: true,
                 reverse: false,
                 autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayInterval: const Duration(seconds: 3),
+                autoPlayAnimationDuration:const Duration(milliseconds: 800),
                 autoPlayCurve: Curves.fastOutSlowIn,
                 enlargeCenterPage: true,
                 enlargeFactor: 0.3,

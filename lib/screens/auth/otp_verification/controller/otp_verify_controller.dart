@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:watchlux/screens/bottom%20nav/view/bottom_nav_screen.dart';
-import 'package:watchlux/screens/home/view/home_screen.dart';
 
 import '../../../../core/constant.dart';
 import '../../sign_up/model/signup_model.dart';

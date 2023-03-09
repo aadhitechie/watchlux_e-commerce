@@ -26,7 +26,7 @@ class StartingScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                'Watchlux',
+                'watchlux',
                 style: GoogleFonts.oswald(fontSize: 30),
               ),
               const SizedBox(

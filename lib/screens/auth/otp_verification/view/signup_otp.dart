@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
@@ -27,7 +25,7 @@ class OtpVerifyScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Watchlux',
+                'watchlux',
                 style: GoogleFonts.oswald(
                     fontSize: 30, fontWeight: FontWeight.bold),
               ),

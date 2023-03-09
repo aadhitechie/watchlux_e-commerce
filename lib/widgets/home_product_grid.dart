@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:watchlux/common/api_base_url.dart';
 import 'package:watchlux/core/constant.dart';
 import 'package:watchlux/screens/home/controller/home_controller.dart';
+import 'package:watchlux/screens/product_view/view/product_view.dart';
 
 class HomeProductGrid extends StatelessWidget {
  HomeProductGrid({super.key, required this.width, required this.height});
@@ -36,7 +37,7 @@ class HomeProductGrid extends StatelessWidget {
                       Stack(
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () {Get.to(()=>ProductViewScreen(id: homecontroller.productList[index].id,));},
                             child: Container(
                               width: width * 0.5,
                               height: height * 0.20,
@@ -66,12 +67,13 @@ class HomeProductGrid extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            homecontroller.productList[index].price.toString(),
+                            homecontroller.productList[index].discountPrice.toString(),
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                        const  Text('/-')
                         ],
                       )
                     ],

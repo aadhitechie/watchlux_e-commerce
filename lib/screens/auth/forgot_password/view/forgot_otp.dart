@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
@@ -20,7 +22,7 @@ class ForgotOtpScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Watchlux',
+                'watchlux',
                 style: GoogleFonts.oswald(
                     fontSize: 30, fontWeight: FontWeight.bold),
               ),
@@ -66,7 +68,7 @@ class ForgotOtpScreen extends StatelessWidget {
               filled: true,
               keyboardType: TextInputType.number,
               onSubmit: (value) {
-                print('the otp is $value');
+                log('the otp is $value');
               },
             ),
           ),

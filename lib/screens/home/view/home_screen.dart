@@ -6,6 +6,7 @@ import 'package:watchlux/widgets/category_screen.dart';
 import 'package:watchlux/widgets/home_product_grid.dart';
 import '../../../widgets/home_carousel_screen.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   double width = Get.width;
@@ -35,8 +36,11 @@ class HomeScreen extends StatelessWidget {
                     style: GoogleFonts.oswald(
                         fontSize: 24, fontWeight: FontWeight.w500),
                   ),
-                  CategoryScreen(height: height, homeController: homeController,),
-                  Divider(),
+                  CategoryScreen(
+                    height: height,
+                    homeController: homeController,
+                  ),
+                  const Divider(),
                   Text(
                     'Premium Products',
                     style: GoogleFonts.oswald(
