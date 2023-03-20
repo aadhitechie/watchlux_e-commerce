@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:watchlux/core/constant.dart';
 import 'package:watchlux/screens/home/controller/home_controller.dart';
+import 'package:watchlux/screens/wishlist/controller/wishlist_controller.dart';
 import 'package:watchlux/widgets/product_description.dart';
 import 'package:watchlux/widgets/product_view_carousel.dart';
 
@@ -13,6 +14,7 @@ class ProductViewScreen extends StatelessWidget {
   });
   final String id;
   final homecontroller = Get.put(HomeController());
+  final wishlistcontroller = Get.put(WishlistController());
   @override
   Widget build(BuildContext context) {
     final findProductById = homecontroller.findById(id);
@@ -78,13 +80,21 @@ class ProductViewScreen extends StatelessWidget {
                   unselectedItemColor: kBlackcolor,
                   selectedFontSize: 13,
                   unselectedFontSize: 13,
-                  items: const [
+                  items:  [
                     BottomNavigationBarItem(
                       icon: Icon(Icons.shopping_cart_outlined),
                       label: 'Add to cart',
                     ),
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.favorite_outline),
+                      icon: GetBuilder(
+                        init: wishlistcontroller,
+                        builder: (controller) => 
+                       InkWell(
+                          onTap: (){
+                            wishlistcontroller.addOrRemoveWishlist(findProductById.id);
+                          },
+                          child: Icon(Icons.favorite_outline)),
+                      ),
                       label: 'Add to wishlist',
                     ),
                   ]),

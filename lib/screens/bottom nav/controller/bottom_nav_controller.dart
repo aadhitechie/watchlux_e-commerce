@@ -9,7 +9,7 @@ class BottomNavContoller extends GetxController {
   List pages = [
     HomeScreen(),
     const CategoryMainScreen(),
-    const WishlistScreen(),
+     WishlistScreen(),
     const ProfileScreen(),
   ];
 
